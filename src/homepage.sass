@@ -1,0 +1,102 @@
+$gray1: #82A0A9
+$blue1: #42A5F5
+$green1: #00FFAE
+
+@mixin TextDefaults
+  font-family: Roboto
+
+@mixin Button1
+  @include TextDefaults
+  background: none
+  border: 3px solid $green1
+  color: white
+  text-transform: uppercase
+  padding: 12px
+  padding-right: 30px
+  padding-left: 30px
+  border-radius: 5px
+
+
+
+body 
+  @include TextDefaults
+  color: white
+  background-color: black
+
+
+.vzt-site
+  header.vzt-notice-banner
+    background-color: black
+    color: $gray1
+    display: flex
+    flex-direction: row
+    align-items: baseline
+    justify-content: center
+    min-height: 51px
+    padding: 10px
+    z-index: -10
+    strong
+      text-transform: uppercase
+      margin-left: 10px
+      margin-right: 10px
+
+  main.vzt-main-content
+    background-color: black
+    background: url(./img/aurora1.png)
+    z-index: 10
+
+  header.vzt-hero
+    position: relative
+    margin-bottom: 100px
+    .vzt-bg.vzt-hero-image
+      position: absolute
+      z-index: 0
+      top: -150px
+      left: calc(50% - 200px)
+    .vzt-hero-text
+      z-index: 20
+      position: relative
+      text-shadow: 0px 0px 10px black
+      margin-top: 50px
+      width: 565px
+      margin-left: calc(max(50% - 565px, 10px))
+      h1
+        margin-bottom: 100px
+      h2
+        color: white
+        font-size: 56px
+        font-weight: 400
+        strong
+          font-size: 70px 
+          color: $blue1
+      p
+        font-size: 22px
+        line-height: 34px
+      button
+        @include Button1
+        font-size: 18px
+
+  .vzt-center-info
+    position: relative
+    z-index: 20
+    text-align: center
+    display: flex
+    flex-direction: column
+    align-items: center
+    h2
+      color: $blue1
+      font-size: 35px
+      font-weight: 100
+      margin-bottom: 40px
+      strong
+        font-weight: black
+      u
+        text-decoration: none
+        border-bottom: 1px solid $green1
+    p
+      margin: 10px
+      font-size: 18px
+      line-height: 28px
+      font-weight: 100
+      max-width: 930px
+
