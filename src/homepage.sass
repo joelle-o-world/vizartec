@@ -1,6 +1,7 @@
 $gray1: #82A0A9
 $blue1: #42A5F5
 $green1: #00FFAE
+$green2: #6ED4B6
 
 @mixin TextDefaults
   font-family: Roboto
@@ -16,12 +17,41 @@ $green1: #00FFAE
   padding-left: 30px
   border-radius: 5px
 
+@mixin LinklikeButton
+  @include TextDefaults
+  border: none
+  background: none
+  outline: none
+  cursor: pointer
+
+@mixin Font2
+  font-family: Poppins
+
+@mixin MoreItemsButton
+  @include LinklikeButton
+  @include Font2
+  color: $green1
+  font-size: 14px
+  text-transform: uppercase
+  position: relative
+  height: 20px
+  padding: 0px
+  margin-top: 35px
+  margin-bottom: 75px
+  box-sizing: border-box
+  &::after
+    content: url("./img/caret-down.png")
+    position: absolute
+    top: 100%
+    width: 107px
+    left: calc(50% - 53.5px)
 
 
 body 
   @include TextDefaults
   color: white
   background-color: black
+  margin-bottom: 100px
 
 
 .vzt-site
@@ -51,7 +81,7 @@ body
     .vzt-bg.vzt-hero-image
       position: absolute
       z-index: 0
-      top: -150px
+      top: -259px
       left: calc(50% - 200px)
     .vzt-hero-text
       z-index: 20
@@ -99,4 +129,44 @@ body
       line-height: 28px
       font-weight: 100
       max-width: 930px
+    button.vzt-btn-more-items
+      @include MoreItemsButton
+
+  #vzt-techniques
+    display: flex
+    flex-direction: column
+    align-items: center
+    p
+      max-width: 931px
+      color: $green2
+      font-weight: 100
+      font-size: 18px
+      strong
+        font-weight: 800
+    ul
+      display: flex
+      flex-direction: row
+      flex-wrap: wrap
+      justify-content: space-around
+      li
+        display: block
+        width: 269px
+        height: 189px
+        box-sizing: border-box
+        padding: 10px
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        background: radial-gradient(  rgba(16, 20, 19, .9), rgba(0, 36, 25, .9))
+        //background: radial-gradient(  red, green)
+        border-radius: 20px
+        margin: 20px
+        button
+          @include LinklikeButton
+          color: $green1
+
+    button.vzt-btn-more-items
+      @include MoreItemsButton
+    
 
