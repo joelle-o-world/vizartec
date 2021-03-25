@@ -1,10 +1,20 @@
 $gray1: #82A0A9
 $blue1: #42A5F5
+$blue2: #1976D2
 $green1: #00FFAE
 $green2: #6ED4B6
 
 @mixin TextDefaults
-  font-family: Roboto
+  font-family: Roboto, sans-serif
+  font-weight: 100
+
+@mixin DarkGreenBlock
+  padding: 10px
+  border-radius: 20px
+  background: radial-gradient(  rgba(16, 20, 19, .9), rgba(0, 36, 25, .9))
+
+@mixin DarkBlueBG
+  background: radial-gradient(#101413, #04284D)
 
 @mixin Button1
   @include TextDefaults
@@ -16,6 +26,24 @@ $green2: #6ED4B6
   padding-right: 30px
   padding-left: 30px
   border-radius: 5px
+  font-size: 18px
+  min-height: 55px
+
+@mixin DarkForm
+  input, textarea
+    background-color: black
+    box-shadow: 0px 0px 51px rgba(0, 255, 174, .25)
+    border: 1px solid #004831
+    @include TextDefaults
+    font-size: 18px
+    padding: .75em
+    box-sizing: border-box
+    border-radius: 3px
+    &::placeholder
+      text-align: center
+      color: white
+  button
+    @include Button1
 
 @mixin LinklikeButton
   @include TextDefaults
@@ -25,7 +53,89 @@ $green2: #6ED4B6
   cursor: pointer
 
 @mixin Font2
-  font-family: Poppins
+  font-family: Poppins, sans-serif
+
+
+@mixin BasicSection
+  margin: 10px
+  font-size: 18px
+  line-height: 28px
+  font-weight: 100
+  max-width: 1132px
+  margin-right: auto
+  margin-left: auto
+  margin-bottom: 100px
+  >h2, h2.vzt-section-heading
+    @include SectionHeader
+  >h3, h3.vzt-section-subheading
+    border-bottom: 1px solid $green1
+    color: $blue1
+    font-size: 22px
+    font-weight: 100
+
+  >p
+    text-align: center
+    line-height: 28px
+    font-size: 18px
+
+  p.vzt-larger-text
+    font-size: 25px
+  p.vzt-green-text
+    color: $green2
+  .vzt-info-boxes
+    @include InfoBoxes
+  ol.vzt-recent-projects-list
+    @include RecentProjects
+
+@mixin SectionHeader
+  @include TextDefaults
+  font-size: 35px
+  text-align: center
+  color: $blue1
+  position: relative
+  &::after
+    content: ""
+    display: block
+    position: absolute
+    top: 100%
+    margin-top: 7px
+    left: calc(50% - 43.5px)
+    width: 87px
+    height: 0px
+    border-bottom: 1px solid $green1
+
+@mixin InfoBoxes
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-around
+  .vzt-info-box
+    @include DarkGreenBlock
+    &.vzt-blue-info-box
+      @include DarkBlueBG
+    padding-bottom: 41px
+    padding-top: 29px
+    min-height: 478px
+    min-width: 350px
+    max-width: 486px
+    flex-basis: 350px
+    flex-grow: 1
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+    align-items: center
+    h3
+      text-transform: uppercase
+      font-weight: bold
+      font-size: 25px
+    .vzt-inset-box
+      background-color: black
+      border-radius: 12px
+      box-shadow: 0px 3px 28px rgba(110, 212, 182, .15)
+      box-sizing: border-box
+      max-width: 372px
+      min-height: 279px
+      padding: 15px
+
 
 @mixin MoreItemsButton
   @include LinklikeButton
@@ -46,12 +156,123 @@ $green2: #6ED4B6
     width: 107px
     left: calc(50% - 53.5px)
 
+@mixin Logo3DAntiMargins
+  margin-right: -100px
+
+@mixin RecentProjects
+  display: flex
+  flex-direction: column
+  counter-reset: project-counter
+  li.vzt-project
+    counter-increment: project-counter
+    &::before
+      content: counter(project-counter)
+      display: flex
+      align-items: center
+      justify-content: center
+      border: 1px dashed $gray1
+      color: $gray1
+      width: 34px 
+      height: 34px
+      border-radius: 17px
+      margin-right: auto
+      margin-left: auto
+      text-align: center
+    .vzt-project-logo
+      display: block
+      margin-right: auto
+      margin-left: auto
+      margin-bottom: 10px
+    .vzt-project-info-bar
+      background-color: rgba(130, 160, 169, .19)
+      border-radius: 5px
+      display: flex
+      flex-direction: row
+      justify-content: space-around
+      padding: 7px
+      .vzt-project-info-field
+        .vzt-project-info-label
+          display: inline-block
+          margin-right: 10px
+          color: $blue1
+        .vzt-project-info-value
+          display: inline-block
+          .vzt-flag-icon
+            height: 1em
+            margin-right: 10px
+          color: $gray1
+    .vzt-sidebyside
+      display: flex
+      flex-wrap: wrap
+      flex-direction: row
+      .vzt-project-link
+        text-align: center
+        margin: 25px
+        img.vzt-site-thumbnail
+          width: 207px
+          height: 207px
+          object-fit: cover
+          border: 1px solid $green1
+          border-radius: 19px
+          display: block
+        button.vzt-visit-site
+          @include LinklikeButton
+          color: $green1
+          font-size: 14px
+          font-weight: 400
+          text-transform: uppercase
+          margin: 25px
+      .vzt-project-objectives
+        flex-basis: 350px
+        flex-grow: 1
+      
+      .vzt-project-keywords
+        background-color: $blue2
+        display: inline-flex
+        flex-direction: row
+        align-items: baseline
+        padding: 10px
+        padding-left: 30px
+        padding-right: 30px
+        border-radius: 5px
+        h3
+          margin: 0px
+
 
 body 
   @include TextDefaults
   color: white
   background-color: black
   margin-bottom: 100px
+  overflow-x: hidden
+  width: 100vw
+  box-sizing: border-box
+
+@mixin Checklist
+  padding-left: 34px
+  li
+    display: block
+    list-style: none
+    position: relative
+    padding-left: 5px
+    margin-bottom: 20px
+    &::before
+      content: url(img/checkbox.svg)
+      position: absolute
+      right: 100%
+
+@mixin CommaList
+  display: inline
+  li
+    display: inline
+    &:not(:first-child)::before
+      content: ', '
+
+ul.vzt-checklist
+  @include Checklist
+  
+ul.vzt-comma-list
+  @include CommaList
 
 
 .vzt-site
@@ -149,18 +370,15 @@ body
       flex-wrap: wrap
       justify-content: space-around
       li
+        @include DarkGreenBlock
         display: block
         width: 269px
         height: 189px
         box-sizing: border-box
-        padding: 10px
         display: flex
         flex-direction: column
         justify-content: center
         align-items: center
-        background: radial-gradient(  rgba(16, 20, 19, .9), rgba(0, 36, 25, .9))
-        //background: radial-gradient(  red, green)
-        border-radius: 20px
         margin: 20px
         button
           @include LinklikeButton
@@ -168,5 +386,55 @@ body
 
     button.vzt-btn-more-items
       @include MoreItemsButton
+
+  #vzt-why-us
+    @include BasicSection
+    hgroup
+      text-align: center
+    .vzt-logo-3d
+      margin-right: -160px
+      margin-bottom: -252px
+      margin-top: -160px
+  #vzt-recent-projects
+    @include BasicSection
+
+  #vzt-contact
+    @include BasicSection
+    border-bottom: none
+    form.vzt-contact-form
+      @include DarkForm
+      display: flex
+      flex-direction: column
+      align-items: stretch
+      max-width: 405px
+      padding: 0px
+      margin-right: auto
+      margin-left: auto
+
+      input.vzt-email-input, textarea.vzt-message-input
+        margin: 5px
+      input.vzt-email-input
+        height: 51px
+      textarea.vzt-message-input
+        height: 119px
+        margin: 5px
+      button.vzt-form-submit
+        margin: 14px
+        width: 193px
+        align-self: center
+
+
+  footer#vzt-footer
+    display: flex
+    flex-direction: column
+    align-items: center
+    p.vzt-tagline
+      text-align: center
+      font-size: 22px
+      strong
+        font-size: 30px
+        color: $blue1
+        display: block
+
     
 
