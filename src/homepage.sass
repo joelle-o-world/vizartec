@@ -93,6 +93,9 @@ $green2: #6ED4B6
   text-align: center
   color: $blue1
   position: relative
+  strong.underline
+    text-decoration: underline 1px $green1
+    text-underline-offset: 11px
   &::after
     content: ""
     display: block
@@ -276,6 +279,10 @@ ul.vzt-comma-list
 
 
 .vzt-site
+  box-sizing: border-box
+  width: 100vw
+  overflow-x: hidden
+
   header.vzt-notice-banner
     background-color: black
     color: $gray1
@@ -400,7 +407,9 @@ ul.vzt-comma-list
 
   #vzt-contact
     @include BasicSection
-    border-bottom: none
+    >h2
+      &::after
+        display: none
     form.vzt-contact-form
       @include DarkForm
       display: flex
